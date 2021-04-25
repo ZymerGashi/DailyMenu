@@ -1,4 +1,6 @@
 using DailyMenu.DataAccess.Data;
+using DailyMenu.DataAccess.Repository;
+using DailyMenu.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,9 @@ namespace DailyMenu
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
