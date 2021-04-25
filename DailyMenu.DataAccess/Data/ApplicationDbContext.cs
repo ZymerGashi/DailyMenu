@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyMenu.Data
+namespace DailyMenu.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
