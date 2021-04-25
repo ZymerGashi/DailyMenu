@@ -1,6 +1,6 @@
 using System;
 
-namespace DailyMenu.Models
+namespace DailyMenu.Models.ViewModels
 {
     public class ErrorViewModel
     {
