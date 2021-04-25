@@ -13,11 +13,19 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.14" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DailyMenu.DataAccess\DailyMenu.DataAccess.csproj" />
     <ProjectReference Include="..\DailyMenu.Models\DailyMenu.Models.csproj" />
+    <ProjectReference Include="..\DailyMenu.Utility\DailyMenu.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Owner\Controllers\" />
+    <Folder Include="Areas\Owner\Views\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

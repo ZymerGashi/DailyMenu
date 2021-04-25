@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DailyMenu.Models\DailyMenu.Models.csproj" />
+    <ProjectReference Include="..\DailyMenu.Utility\DailyMenu.Utility.csproj" />
+  </ItemGroup>
+
 </Project>
