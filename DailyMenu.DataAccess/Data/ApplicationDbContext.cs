@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DailyMenu.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,10 @@ namespace DailyMenu.DataAccess.Data
             : base(options)
         {
         }
+
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+
     }
 }
