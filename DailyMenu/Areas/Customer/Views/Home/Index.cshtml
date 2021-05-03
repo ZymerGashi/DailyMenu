@@ -2,7 +2,83 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div id="map" class="col-md-12" style="height: 85vh">
+
+
+
+    </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+
+    //alert(navigator.permissions.query({ name: 'geolocation' }).result);
+
+
+    //This start function will be called first by the google api. It will get the user position and pass it to the success function
+    function start() {
+        navigator.geolocation.getCurrentPosition(success);
+    }
+
+    let map;
+    //This function will get the position from the start function and pass the coordinates to the initMap function
+    function success(pos) {
+        var crd = pos.coords;
+        initMap(crd);
+        // alert(pos.coords.latitude + ' ' + pos.coords.longitude);
+
+        //console.log('Your current position is:');
+        //console.log(`Latitude : ${crd.latitude}`);
+        //console.log(`Longitude: ${crd.longitude}`);
+        //console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    //This will update the map dive and display the user position and also a marker on that position
+    function initMap(coordinates) {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: coordinates.latitude, lng: coordinates.longitude },
+            zoom: 17,
+        });
+
+
+ 
+
+            new google.maps.Marker({
+
+                position: { lat: coordinates.latitude, lng: coordinates.longitude },
+                map,
+                title: "More or less" + coordinates.accuracy + " meters",
+            });
+
+
+    }
+
+
+    //This will be needed when I will implement the search for nearbyplaces
+    function getNearByPlaces() {
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+            }
+        });
+
+
+        $.ajax({
+            url: "",
+            type: "GET",
+            success: function (result) { alert(result.results[0].geometry.location.lat); },
+            error: function (error) { alert(error) }
+        });
+
+    }
+
+   // getNearByPlaces();
+
+
+
+</script>
+
