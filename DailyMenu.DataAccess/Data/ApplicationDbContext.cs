@@ -17,6 +17,11 @@ namespace DailyMenu.DataAccess.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<City> City { get; set; }
+
+    
+
+
 
     }
 }

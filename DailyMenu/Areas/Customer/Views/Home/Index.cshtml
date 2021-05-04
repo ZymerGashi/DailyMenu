@@ -41,12 +41,8 @@
     function initMap(coordinates) {
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: coordinates.latitude, lng: coordinates.longitude },
-            zoom: 17,
+            zoom: 15,
         });
-
-
- 
-
             new google.maps.Marker({
 
                 position: { lat: coordinates.latitude, lng: coordinates.longitude },
