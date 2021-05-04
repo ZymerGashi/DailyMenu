@@ -28,6 +28,8 @@ namespace DailyMenu.DataAccess.Data
 
         public DbSet<Business> Business { get; set; }
 
+        public DbSet<DailyMenus> DailyMenu { get; set; }
+
 
     }
 }
