@@ -22,6 +22,10 @@ namespace DailyMenu.DataAccess.Data
     
         public DbSet<Category> Category { get; set; }
 
+        public DbSet<Menu> Menu { get; set; }
+
+
+
 
     }
 }
