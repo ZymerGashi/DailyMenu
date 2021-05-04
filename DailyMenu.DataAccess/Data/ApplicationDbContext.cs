@@ -24,7 +24,7 @@ namespace DailyMenu.DataAccess.Data
 
         public DbSet<Menu> Menu { get; set; }
 
-
+        public DbSet<MenuItem> MenuItem { get; set; }
 
 
     }
