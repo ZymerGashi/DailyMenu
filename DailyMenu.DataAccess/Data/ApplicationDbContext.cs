@@ -20,7 +20,7 @@ namespace DailyMenu.DataAccess.Data
         public DbSet<City> City { get; set; }
 
     
-
+        public DbSet<Category> Category { get; set; }
 
 
     }
