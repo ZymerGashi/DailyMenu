@@ -9,5 +9,7 @@ namespace DailyMenu.DataAccess.Repository.IRepository
        
 //ICategoryRepository Category {get;}
 
+        IBusinessRepository Business { get; }
+
     }
 }
