@@ -26,8 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Owner\Controllers\" />
-    <Folder Include="Areas\Owner\Views\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

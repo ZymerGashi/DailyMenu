@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="row" style="height:83vh">
+
+    <div class="col-sm-3 h-100" style=" float:left">
+
+        <div class="col-sm-12">
+            <form>
+                <fieldset>
+                    <legend>Fill the below details</legend>
+
+                    <div class="form-group">
+                        <label for="Name" class="form-label mt-4">Name</label>
+                        <input type="text" class="form-control" id="businessName" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="City" class="form-label mt-4">City</label>
+                        <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Category" class="form-label mt-4">Category</label>
+                        <input type="text" class="form-control" id="category" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="form-label mt-4">Map coordinates</label>
+                        <input type="text" class="form-control" id="mapCoordinates" placeholder="Coordinates">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </fieldset>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="col-sm-9 h-100" style=" background-color: red; float:left" id="map">
+
+
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    //This start function will be called first by the google api. It will get the user position and pass it to the success function
+    function start() {
+        navigator.geolocation.getCurrentPosition(success);
+    }
+
+    let map;
+    //This function will get the position from the start function and pass the coordinates to the initMap function
+    function success(pos) {
+        var crd = pos.coords;
+        initMap(crd);
+    }
+
+    //This will update the map dive and display the user position and also a marker on that position
+    function initMap(coordinates) {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: coordinates.latitude, lng: coordinates.longitude },
+            zoom: 15,
+        });
+            new google.maps.Marker({
+
+                position: { lat: coordinates.latitude, lng: coordinates.longitude },
+                map,
+                title: "More or less" + coordinates.accuracy + " meters",
+            });
+
+
+        map.addListener("click", (mapsMouseEvent) => {
+
+           // alert(mapsMouseEvent.latLng);
+
+            document.getElementById("mapCoordinates").value = mapsMouseEvent.latLng;
+
+            map.setZoom(20);
+            map.setCenter(mapsMouseEvent.latLng);
+        });
+
+
+
+    }
+</script>
