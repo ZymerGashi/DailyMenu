@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DailyMenu.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,17 @@ namespace DailyMenu.Areas.Owner.Controllers
         {
             return View();
         }
+
+   
     }
+
+
+
+
+
+
+
+
 }
 
 
