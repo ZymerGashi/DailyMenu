@@ -40,6 +40,15 @@ namespace DailyMenu.Areas.Owner.Controllers
         public IActionResult Post(Business business)
         {
 
+            //Create a new empty Menu for the Business
+
+            Menu newEmptyMenu = new Menu();
+            newEmptyMenu.Name = business.Name + " - Menu";
+            _unitOfWork.Menu.Add(newEmptyMenu);
+            _unitOfWork.Save();
+
+            //Mapp the new created Menu to the Business
+            business.MenuId = newEmptyMenu.ID;
              business.OwnerId = _userManager.GetUserId(HttpContext.User);
                 _unitOfWork.Business.Add(business);
                 _unitOfWork.Save();
@@ -49,6 +58,10 @@ namespace DailyMenu.Areas.Owner.Controllers
 
 
         }
+
+
+
+
 
 
     }
