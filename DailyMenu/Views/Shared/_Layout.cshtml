@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using DailyMenu.Utility
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,14 +27,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    @*<ul class="navbar-nav flex-grow-1">
+
+                    @if (User.IsInRole(SD.Role_Owner))
+                    {
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="Owner" asp-controller="RegisterBusiness" asp-action="Index">Register a new business</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>*@
+                    </ul>
+                    }
                 </div>
             </div>
         </nav>
