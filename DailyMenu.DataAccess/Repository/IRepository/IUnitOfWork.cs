@@ -11,6 +11,10 @@ namespace DailyMenu.DataAccess.Repository.IRepository
 
         IBusinessRepository Business { get; }
 
+        IMenuRepository Menu { get; }
+
+
+
         public void Save();
 
     }
