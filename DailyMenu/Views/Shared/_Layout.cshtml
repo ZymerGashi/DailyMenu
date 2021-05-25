@@ -30,11 +30,17 @@
 
                     @if (User.IsInRole(SD.Role_Owner))
                     {
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Owner" asp-controller="RegisterBusiness" asp-action="Index">Register a new business</a>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="Owner" asp-controller="RegisterBusiness" asp-action="Index">Register a new business</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="Owner" asp-controller="Business" asp-action="Index">My businesses</a>
+                    </li>
+
+
+                </ul>
                     }
                 </div>
             </div>
