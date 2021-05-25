@@ -69,7 +69,7 @@ namespace DailyMenu.Areas.Owner.Controllers
                 _unitOfWork.Save();
 
 
-            return RedirectToAction("Index", "RegisterBusiness");
+            return RedirectToAction("Index", "Business");
 
 
         }
