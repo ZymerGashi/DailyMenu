@@ -15,21 +15,28 @@
                         <input type="text" class="form-control" asp-for="@Model.Name" id="businessName" aria-describedby="emailHelp" placeholder="Enter name">
                     </div>
                     @*<div class="form-group">
-                        <label for="City" class="form-label mt-4">City</label>
-                        <input type="text" class="form-control" asp-for="@Model.CityId" id="city" aria-describedby="emailHelp" placeholder="Enter name" value="1">
-                    </div>*@
+            <label for="City" class="form-label mt-4">City</label>
+            <input type="text" class="form-control" asp-for="@Model.CityId" id="city" aria-describedby="emailHelp" placeholder="Enter name" value="1">
+        </div>*@
 
                     <div class="form-group">
                         <label asp-for="@Model.CityId"></label>
-                        @Html.DropDownListFor( c => c.CityId, (IEnumerable<SelectListItem>) ViewBag.CityList, "--Please select the city", new { @class = "form-control" })
+                        @Html.DropDownListFor(c => c.CityId, (IEnumerable<SelectListItem>)ViewBag.CityList, "--Please select the city", new { @class = "form-control" })
 
                     </div>
 
 
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label for="Category" class="form-label mt-4">Category</label>
                         <input type="text" class="form-control" asp-for="@Model.CategoryId" id="category" aria-describedby="emailHelp" placeholder="Enter name" value="1">
+                    </div>*@
+
+                    <div class="form-group">
+                        <label asp-for="@Model.CategoryId"></label>
+                        @Html.DropDownListFor(c => c.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "--Please select the category", new { @class = "form-control" })
+
                     </div>
+
 
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="form-label mt-4">Map coordinates</label>

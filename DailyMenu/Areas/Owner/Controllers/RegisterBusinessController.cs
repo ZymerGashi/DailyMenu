@@ -38,6 +38,15 @@ namespace DailyMenu.Areas.Owner.Controllers
 
             //Pass it in the ViewBag so it can be used in the view to build the dropdown
             ViewBag.CityList = CityList;
+
+
+            //Create the list of categories and initialize it with the categories in the database
+            IEnumerable<SelectListItem> CategoryList;
+            CategoryList = _unitOfWork.Category.GetAll().Select(ca => new SelectListItem { Text = ca.Name, Value = ca.ID.ToString() });
+
+            //Pass it in the ViewBag so it can be used in the view to build the dropdown
+            ViewBag.CategoryList = CategoryList;
+
             return View();
         }
 
