@@ -18,7 +18,7 @@
 
         <div class="col-sm-9 h-100" style=" background-color: red; float:left">
 
-            <div class="h-75" style=" background-color: black; ">
+            <div class="h-75" style=" background-color: black; " id="map">
 
 
 
@@ -34,4 +34,50 @@
         </div>
 
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+
+    //This start function will be called first by the google api. It will get the user position and pass it to the success function
+    function start() {
+        navigator.geolocation.getCurrentPosition(success);
+    }
+
+    let map;
+    //This function will get the position from the start function and pass the coordinates to the initMap function
+    function success(pos) {
+        var crd = pos.coords;
+        initMap(crd);
+    }
+
+    //This will update the map dive and display the user position and also a marker on that position
+    function initMap(coordinates) {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: coordinates.latitude, lng: coordinates.longitude },
+            zoom: 15,
+        });
+            new google.maps.Marker({
+
+                position: { lat: coordinates.latitude, lng: coordinates.longitude },
+                map,
+                title: "More or less" + coordinates.accuracy + " meters",
+            });
+
+
+        map.addListener("click", (mapsMouseEvent) => {
+
+           // alert(mapsMouseEvent.latLng);
+
+            document.getElementById("mapCoordinates").value = mapsMouseEvent.latLng;
+
+            map.setZoom(20);
+            map.setCenter(mapsMouseEvent.latLng);
+        });
+
+
+
+    }
+    </script>
 
