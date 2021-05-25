@@ -18,12 +18,14 @@ namespace DailyMenu.DataAccess.Repository
 
             Business = new BusinessRepository(_db);
             Menu = new MenuRepository(_db);
+            City = new CityRepository(_db);
         }
 
         public IBusinessRepository Business { get; private set; }
 
         public IMenuRepository Menu { get; private set; }
 
+        public ICityRepository City { get; private set; }
 
         //public ICategoryRepository category (get; private set;)
 

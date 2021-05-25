@@ -13,7 +13,7 @@ namespace DailyMenu.DataAccess.Repository.IRepository
 
         IMenuRepository Menu { get; }
 
-
+        ICityRepository City { get; }
 
         public void Save();
 
