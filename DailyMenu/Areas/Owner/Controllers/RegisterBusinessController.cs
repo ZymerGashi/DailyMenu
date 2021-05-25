@@ -4,6 +4,7 @@ using DailyMenu.DataAccess.Repository.IRepository;
 using DailyMenu.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,15 @@ namespace DailyMenu.Areas.Owner.Controllers
         
         }
 
-        public ClaimsPrincipal ClaimsType { get; private set; }
-
         public IActionResult Index()
         {
+
+            //Create the list of cities and initialize it with the cities in the database
+            IEnumerable<SelectListItem> CityList;
+            CityList = _unitOfWork.City.GetAll().Select(c => new SelectListItem { Text=c.Name,Value=c.ID.ToString()});
+
+            //Pass it in the ViewBag so it can be used in the view to build the dropdown
+            ViewBag.CityList = CityList;
             return View();
         }
 
