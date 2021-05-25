@@ -27,6 +27,7 @@ namespace DailyMenu.DataAccess.Repository
 
         public ICityRepository City { get; private set; }
 
+        public ICategoryRepository Category { get; private set; }
         //public ICategoryRepository category (get; private set;)
 
 

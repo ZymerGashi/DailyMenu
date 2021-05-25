@@ -14,6 +14,7 @@ namespace DailyMenu.DataAccess.Repository.IRepository
         IMenuRepository Menu { get; }
 
         ICityRepository City { get; }
+        ICategoryRepository Category { get; }
 
         public void Save();
 
