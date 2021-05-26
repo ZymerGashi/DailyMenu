@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label asp-for="@Model.City"></label>
-                    @Html.DropDownListFor(c => c.CityId, (IEnumerable<SelectListItem>)ViewBag.CityList, "--Please select the city", new { @class = "form-control" })
+                    @Html.DropDownListFor(c => c.CityId, (IEnumerable<SelectListItem>)ViewBag.CityList, "Please select the city", new { @class = "form-control" })
 
                 </div>
 
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label asp-for="@Model.Category"></label>
-                    @Html.DropDownListFor(c => c.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "--Please select the category", new { @class = "form-control" })
+                    @Html.DropDownListFor(c => c.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "Please select the category", new { @class = "form-control" })
 
                 </div>
 
@@ -52,7 +52,7 @@
 
                 <div class="form-group" style="margin-top:15px;margin-bottom:15px;">
                     <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Delete the business</label>
+                        <label class="form-check-label" for="IsDeleted">Delete the business</label>
                         <input class="form-check-input" id="IsDeleted" type="checkbox" asp-for="@Model.IsDeleted">
                     </div>
                 </div>
@@ -86,18 +86,37 @@
                 <tbody>
                     @foreach (var business in ViewBag.registeredBusinesses)
                     {
-                    <tr class="table-primary" onclick="updateTheBusinessLocationOnTableRowClick(this); updateFormFields(this);">
+                        if (business.IsDeleted == false)
+                        {
+                            <tr class="table-success" onclick="updateTheBusinessLocationOnTableRowClick(this); updateFormFields(this);">
 
-                        <td style="display:none;" class="ID">@business.ID</td>
-                        <td class="name">@business.Name</td>
-                        <td class="category">@business.Category.Name</td>
-                        <td style="display:none;" class="catId">@business.Category.ID</td>
-                        <td class="city">@business.City.Name</td>
-                        <td style="display:none;" class="cId">@business.City.ID</td>
-                        <td class="Coordinate">@business.MapPositionCoordinates</td>
-                        <td class="menu" style="display:none;">@business.MenuId</td>
-                        <td class="isdeleted" style="display:none;">@business.IsDeleted</td>
-                    </tr>
+                                <td style="display:none;" class="ID">@business.ID</td>
+                                <td class="name">@business.Name</td>
+                                <td class="category">@business.Category.Name</td>
+                                <td style="display:none;" class="catId">@business.Category.ID</td>
+                                <td class="city">@business.City.Name</td>
+                                <td style="display:none;" class="cId">@business.City.ID</td>
+                                <td class="Coordinate">@business.MapPositionCoordinates</td>
+                                <td class="menu" style="display:none;">@business.MenuId</td>
+                                <td class="isdeleted" style="display:none;">@business.IsDeleted</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="table-danger" onclick="updateTheBusinessLocationOnTableRowClick(this); updateFormFields(this);">
+
+                                <td style="display:none;" class="ID">@business.ID</td>
+                                <td class="name">@business.Name</td>
+                                <td class="category">@business.Category.Name</td>
+                                <td style="display:none;" class="catId">@business.Category.ID</td>
+                                <td class="city">@business.City.Name</td>
+                                <td style="display:none;" class="cId">@business.City.ID</td>
+                                <td class="Coordinate">@business.MapPositionCoordinates</td>
+                                <td class="menu" style="display:none;">@business.MenuId</td>
+                                <td class="isdeleted" style="display:none;">@business.IsDeleted</td>
+                            </tr>
+
+                        }
 
                     }
 
