@@ -34,12 +34,12 @@
                     <tbody>
                        @foreach (var business in Model)
                        {
-                        <tr class="table-primary">
+                        <tr class="table-primary" onclick="updateTheBusinessLocationOnTableRowClick(this)">
                             
                             <td>@business.Name</td>
                             <td>@business.Category.Name</td>
                             <td>@business.City.Name</td>
-                            <td>@business.MapPositionCoordinates</td>
+                            <td class="Coordinate">@business.MapPositionCoordinates</td>
                         </tr>
                        
                        }
@@ -61,6 +61,18 @@
 
 
     <script>
+
+        function updateTheBusinessLocationOnTableRowClick(object) {
+            var coordinates = $(object).find('.Coordinate').text();
+            var coordLatLang = coordinates.split(',');
+            var lat = coordLatLang[0].replace('(', '');
+            var lang = coordLatLang[1].replace(')', '');
+
+            var coordinatesObject = { latitude:parseFloat(lat),longitude:parseFloat(lang),accuracy:0}
+            initMap(coordinatesObject);
+
+        }
+
 
     //This start function will be called first by the google api. It will get the user position and pass it to the success function
     function start() {
