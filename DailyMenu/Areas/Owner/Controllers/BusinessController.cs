@@ -2,6 +2,7 @@
 using DailyMenu.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,29 @@ namespace DailyMenu.Areas.Owner.Controllers
 
             IEnumerable<Business> registeredBusinesses = _unitOfWork.Business.GetAll(b => b.OwnerId == loggedInUserID, includeProperties : "City,Category");
 
-            return View(registeredBusinesses);
+            ViewBag.registeredBusinesses = registeredBusinesses;
+
+            //Create the list of cities and initialize it with the cities in the database
+            IEnumerable<SelectListItem> CityList;
+            CityList = _unitOfWork.City.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.ID.ToString() });
+
+            //Pass it in the ViewBag so it can be used in the view to build the dropdown
+            ViewBag.CityList = CityList;
+
+
+            //Create the list of categories and initialize it with the categories in the database
+            IEnumerable<SelectListItem> CategoryList;
+            CategoryList = _unitOfWork.Category.GetAll().Select(ca => new SelectListItem { Text = ca.Name, Value = ca.ID.ToString() });
+
+            //Pass it in the ViewBag so it can be used in the view to build the dropdown
+            ViewBag.CategoryList = CategoryList;
+
+
+            return View();
         }
+
+
+        
 
    
     }
