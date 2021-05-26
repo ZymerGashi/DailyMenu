@@ -6,33 +6,36 @@
     <div class="col-sm-3 h-100" style=" float:left">
 
 
-        <form method="post">
+        <form method="post" style="padding:10px;">
             <fieldset>
                 <legend>Edit Details </legend>
+
+
+                <input type="hidden" class="form-control" asp-for="@Model.ID" id="businessID" placeholder="Enter name" value="20">
 
                 <div class="form-group">
                     <label for="Name" class="form-label mt-4">Name</label>
                     <input type="text" class="form-control" asp-for="@Model.Name" id="businessName" aria-describedby="emailHelp" placeholder="Enter name">
                 </div>
                 @*<div class="form-group">
-                    <label for="City" class="form-label mt-4">City</label>
-                    <input type="text" class="form-control" asp-for="@Model.CityId" id="city" aria-describedby="emailHelp" placeholder="Enter name" value="1">
-                </div>*@
+            <label for="City" class="form-label mt-4">City</label>
+            <input type="text" class="form-control" asp-for="@Model.CityId" id="city" aria-describedby="emailHelp" placeholder="Enter name" value="1">
+        </div>*@
 
                 <div class="form-group">
-                    <label asp-for="@Model.CityId"></label>
+                    <label asp-for="@Model.City"></label>
                     @Html.DropDownListFor(c => c.CityId, (IEnumerable<SelectListItem>)ViewBag.CityList, "--Please select the city", new { @class = "form-control" })
 
                 </div>
 
 
                 @*<div class="form-group">
-                    <label for="Category" class="form-label mt-4">Category</label>
-                    <input type="text" class="form-control" asp-for="@Model.CategoryId" id="category" aria-describedby="emailHelp" placeholder="Enter name" value="1">
-                </div>*@
+            <label for="Category" class="form-label mt-4">Category</label>
+            <input type="text" class="form-control" asp-for="@Model.CategoryId" id="category" aria-describedby="emailHelp" placeholder="Enter name" value="1">
+        </div>*@
 
                 <div class="form-group">
-                    <label asp-for="@Model.CategoryId"></label>
+                    <label asp-for="@Model.Category"></label>
                     @Html.DropDownListFor(c => c.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryList, "--Please select the category", new { @class = "form-control" })
 
                 </div>
@@ -46,6 +49,7 @@
 
                 </div>
                 <input type="hidden" class="form-control" id="IsDeleted" asp-for="@Model.IsDeleted" placeholder="IsDeleted" value="0">
+                <input type="hidden" class="form-control" id="MenuId" asp-for="@Model.MenuId" placeholder="MenuId">
 
 
                 <button type="submit" asp-action="Post" asp-area="Owner" asp-controller="Business" class="btn btn-primary">Edit</button>
@@ -77,13 +81,17 @@
                 <tbody>
                     @foreach (var business in ViewBag.registeredBusinesses)
                     {
-                        <tr class="table-primary" onclick="updateTheBusinessLocationOnTableRowClick(this)">
+                    <tr class="table-primary" onclick="updateTheBusinessLocationOnTableRowClick(this); updateFormFields(this);">
 
-                            <td>@business.Name</td>
-                            <td>@business.Category.Name</td>
-                            <td>@business.City.Name</td>
-                            <td class="Coordinate">@business.MapPositionCoordinates</td>
-                        </tr>
+                        <td style="display:none;" class="ID">@business.ID</td>
+                        <td class="name">@business.Name</td>
+                        <td class="category">@business.Category.Name</td>
+                        <td style="display:none;" class="catId">@business.Category.ID</td>
+                        <td class="city">@business.City.Name</td>
+                        <td style="display:none;" class="cId">@business.City.ID</td>
+                        <td class="Coordinate">@business.MapPositionCoordinates</td>
+                        <td class="menu" style="display:none;">@business.MenuId</td>
+                    </tr>
 
                     }
 
@@ -116,6 +124,22 @@
 
     }
 
+    function updateFormFields( object) {
+        var ID = $(object).find('.ID').text();
+        var name = $(object).find('.name').text();
+        var coordinates = $(object).find('.Coordinate').text();
+        var city = $(object).find('.cId').text();
+        var category = $(object).find('.catId').text();
+        var menu = $(object).find('.menu').text();
+
+        document.getElementById("businessID").value = ID;
+        document.getElementById("businessName").value = name;
+        document.getElementById("mapCoordinates").value = coordinates;
+        document.getElementById("CityId").value = city;
+        document.getElementById("CategoryId").value = category;
+        document.getElementById("MenuId").value = menu;
+
+    }
 
     //This start function will be called first by the google api. It will get the user position and pass it to the success function
     function start() {

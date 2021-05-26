@@ -52,6 +52,27 @@ namespace DailyMenu.Areas.Owner.Controllers
         }
 
 
+        [HttpPost]
+
+
+        public IActionResult Post(Business business)
+        {
+
+            var loggedInUserID = _userManager.GetUserId(HttpContext.User);
+            var bussinesFromDB = _unitOfWork.Business.Get(business.ID);
+
+            if (business.ID != null && bussinesFromDB.OwnerId==loggedInUserID)
+            {
+                
+                _unitOfWork.Business.Update(business);
+                _unitOfWork.Save();
+            
+            }
+
+            return Redirect("Index");
+        }
+
+
         
 
    

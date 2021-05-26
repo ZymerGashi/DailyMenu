@@ -28,7 +28,7 @@ namespace DailyMenu.DataAccess.Repository
                 businessObjectFromDb.Name = business.Name;
                 businessObjectFromDb.CategoryId = business.CategoryId;
                 businessObjectFromDb.CityId = business.CityId;
-                businessObjectFromDb.OwnerId = business.OwnerId;
+                //businessObjectFromDb.OwnerId = business.OwnerId;
                 businessObjectFromDb.MapPositionCoordinates = business.MapPositionCoordinates;
                 businessObjectFromDb.MenuId = business.MenuId;
                 businessObjectFromDb.IsDeleted = business.IsDeleted;
