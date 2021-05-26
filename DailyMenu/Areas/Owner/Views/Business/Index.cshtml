@@ -48,16 +48,21 @@
 
 
                 </div>
-                <input type="hidden" class="form-control" id="IsDeleted" asp-for="@Model.IsDeleted" placeholder="IsDeleted" value="0">
                 <input type="hidden" class="form-control" id="MenuId" asp-for="@Model.MenuId" placeholder="MenuId">
 
+                <div class="form-group" style="margin-top:15px;margin-bottom:15px;">
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Delete the business</label>
+                        <input class="form-check-input" id="IsDeleted" type="checkbox" asp-for="@Model.IsDeleted">
+                    </div>
+                </div>
 
                 <button type="submit" asp-action="Post" asp-area="Owner" asp-controller="Business" class="btn btn-primary">Edit</button>
             </fieldset>
-        </form>
+    </form>
 
 
-    </div>
+</div>
 
     <div class="col-sm-9 h-100" style=" float:left">
 
@@ -91,6 +96,7 @@
                         <td style="display:none;" class="cId">@business.City.ID</td>
                         <td class="Coordinate">@business.MapPositionCoordinates</td>
                         <td class="menu" style="display:none;">@business.MenuId</td>
+                        <td class="isdeleted" style="display:none;">@business.IsDeleted</td>
                     </tr>
 
                     }
@@ -131,6 +137,10 @@
         var city = $(object).find('.cId').text();
         var category = $(object).find('.catId').text();
         var menu = $(object).find('.menu').text();
+        var isdeleted = $(object).find('.isdeleted').text()=='False' ? 0 : 1;
+
+
+        console.log(Boolean(isdeleted));
 
         document.getElementById("businessID").value = ID;
         document.getElementById("businessName").value = name;
@@ -138,6 +148,7 @@
         document.getElementById("CityId").value = city;
         document.getElementById("CategoryId").value = category;
         document.getElementById("MenuId").value = menu;
+        document.getElementById("IsDeleted").checked = Boolean(isdeleted);
 
     }
 
